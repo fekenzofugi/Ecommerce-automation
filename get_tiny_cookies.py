@@ -1,17 +1,15 @@
 import pickle
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-import time
 
 options = Options()
 options.add_argument("--start-maximized")
 driver = webdriver.Chrome(options=options)
 
-driver.get("https://www.mercadolivre.com.br")
+driver.get("https://www.tiny.com.br")
 
-# Load saved cookies
-for cookie in pickle.load(open("ml_cookies.pkl", "rb")):
-    driver.add_cookie(cookie)
-driver.refresh()
+print("Faça login manualmente. Quando terminar, pressione Enter aqui...")
+input()
 
-time.sleep(5)
+pickle.dump(driver.get_cookies(), open("ml_cookies.pkl", "wb"))
+driver.quit()
